@@ -35,7 +35,6 @@ public class ejercicioLigaFutbol {
         }
         System.out.println("");
         System.out.println("");
-
         ordenaBombolla(puntos, equipos);
     }
 
