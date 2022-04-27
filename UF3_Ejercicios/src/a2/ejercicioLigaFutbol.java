@@ -64,7 +64,6 @@ public class ejercicioLigaFutbol {
                     continua = true;
                 }
             }
-
             aux--;
 
         } while (continua);
