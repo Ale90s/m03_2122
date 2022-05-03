@@ -7,6 +7,9 @@ public class Ex167_Fractales {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
+        
+        
+        
         int longitudFractalMasGrande = in.nextInt(), sumatorio = 0, vueltaFractal = 0;
 
         do {

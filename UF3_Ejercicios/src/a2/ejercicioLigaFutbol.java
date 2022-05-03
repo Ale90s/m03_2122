@@ -38,7 +38,7 @@ public class ejercicioLigaFutbol {
         ordenaBombolla(puntos, equipos);
     }
 
-    public static void ordenaBombolla(String[] puntos, String[] equipos) {
+    public static void ordenaBombolla(String[] puntos, String[] equipos) throws IOException {
 
         boolean continua;
         String mayor;
@@ -66,9 +66,40 @@ public class ejercicioLigaFutbol {
             aux--;
 
         } while (continua);
+        
+        BufferedWriter archivo = null;
+        try {
+//        String pathWrite = "C:\\Users\\thiri\\Documents\\compartir\\clasificacio.txt";
+        File archivotexto = new File("C:\\Users\\thiri\\Documents\\compartir\\clasificacio.txt");
+
+        if (!archivotexto.exists()) {
+            archivotexto.createNewFile();
+        }
+
+        FileWriter output = new FileWriter(archivotexto);
+        archivo = new BufferedWriter(output);
+        String linea;
 
         for (int i = equipos.length - 1; i >= 0; i--) {
-            System.out.printf("%s tiene %s puntos.%n", equipos[i], puntos[i]);
+
+            linea = equipos[i] + " tiene " + puntos[i] + " puntos.";
+
+            System.out.println(linea);
+
+            archivo.write(linea);
+            archivo.newLine();
         }
+        } catch (IOException ioe) {
+	   ioe.printStackTrace();
+	}
+	finally
+	{ 
+	   try{
+	      if(archivo!=null)
+		 archivo.close();
+	   }catch(IOException ex){
+	       System.out.println("Error in closing the BufferedWriter"+ex);
+	    }
+	}
     }
 }
