@@ -1,6 +1,7 @@
 package p1;
 
 import java.io.*;
+import java.util.*;
 
 public class Ex01_P1 {
 
@@ -8,12 +9,20 @@ public class Ex01_P1 {
 
         String path = "C:\\Users\\thiri\\Documents\\Compartir\\resultatsLOL.txt";
 
-        lecturaEscritura(path);
+        lectura(path);
 
     }
 
-    public static void lecturaEscritura(String path) throws FileNotFoundException, IOException {
+    public static void lectura(String path) throws FileNotFoundException, IOException {
 
+        
+        
+        Map<String, Integer> equipos = new HashMap<>(10);
+        
+//        Map equiposs = new HashMap();
+        
+        
+        
         FileReader input = new FileReader(path);
         BufferedReader archivo = new BufferedReader(input);
         String linea;
@@ -25,7 +34,7 @@ public class Ex01_P1 {
         boolean teamA = false, teamB = false;
 
         while ((linea = archivo.readLine()) != null) {
-
+            
             if (!linea.equals("")) {
                 aux = linea.split("[:-]+");
 
@@ -65,10 +74,19 @@ public class Ex01_P1 {
                 teamB = false;
             }
         }
+        
+        
+        
         for (int i = 0; i < nEquipos.length; i++) {
+            
+            equipos.put(nEquipos[i], puntosEquipos[i]);
             System.out.print(nEquipos[i]);
             System.out.println(" " + puntosEquipos[i]);
 
+        }
+        
+        for (int i = 0; i < 10; i++) {
+            System.out.println(equipos);
         }
     }
 }
