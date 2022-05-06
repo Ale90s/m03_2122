@@ -3,19 +3,34 @@ package p1;
 import java.io.*;
 import java.util.*;
 
-public class Ex01_P1 {
+public class Pruebas {
 
     public static void main(String[] args) throws IOException {
 
         String path = "C:\\Users\\thiri\\Documents\\Compartir\\resultatsLOL.txt";
 
-        lectura(path);
+        HashMap<String, Integer> clasiLol = lectura(path);
+        
+        String[] cositas = clasiLol.toString().split("[,{}]+");
+        
+        System.out.println(clasiLol);
+        
+        for (int i = 0; i < cositas.length; i++) {
+            System.out.println(cositas[i]);
+            
+            if (cositas[i].charAt(0) == ' ') {
+                cositas[i] = cositas[i].substring(1, cositas[i].length() - 1);
+            }
+            
+        }
+        
+        
 
     }
 
-    public static void lectura(String path) throws FileNotFoundException, IOException {
+    public static HashMap<String, Integer> lectura(String path) throws FileNotFoundException, IOException {
 
-        Map<String, Integer> equipos = new HashMap<>();
+        HashMap<String, Integer> equipos = new HashMap<>();
 
         FileReader input = new FileReader(path);
         BufferedReader archivo = new BufferedReader(input);
@@ -72,11 +87,9 @@ public class Ex01_P1 {
         for (int i = 0; i < nEquipos.length; i++) {
 
             equipos.put(nEquipos[i], puntosEquipos[i]);
-            System.out.print(nEquipos[i]);
-            System.out.println(" " + puntosEquipos[i]);
 
         }
-
-        System.out.println(equipos);
+        return equipos;
+        
     }
 }
