@@ -87,7 +87,6 @@ public class Ex01_P1 {
 
     public static void escritura(HashMap<String, Integer> clasiLol, String path) throws IOException {
 
-        File archivo = new File(path);
         // PASAMOS EL HashMap A UN ARRAY
         String[] equipos = clasiLol.toString().split(", |=|\\{|\\}");
         // ARRAYS DONDE GUARDAREMOS EL CONTENIDO DEL HashMap
@@ -105,8 +104,8 @@ public class Ex01_P1 {
         }
 
         boolean swap;
-        int mayor;
-        String auxMayor;
+        int menor;
+        String auxMenor;
         aux = puntuacion.length;
 
         // METODO BURBUJA
@@ -114,14 +113,14 @@ public class Ex01_P1 {
             swap = false;
             for (int i = 0; i < aux; i++) {
 
-                if (i < aux - 1 && puntuacion[i] > puntuacion[i + 1]) {
-                    mayor = puntuacion[i];
+                if (i < aux - 1 && puntuacion[i] < puntuacion[i + 1]) {
+                    menor = puntuacion[i];
                     puntuacion[i] = puntuacion[i + 1];
-                    puntuacion[i + 1] = mayor;
+                    puntuacion[i + 1] = menor;
 
-                    auxMayor = nombreEquipos[i];
+                    auxMenor = nombreEquipos[i];
                     nombreEquipos[i] = nombreEquipos[i + 1];
-                    nombreEquipos[i + 1] = auxMayor;
+                    nombreEquipos[i + 1] = auxMenor;
 
                     swap = true;
                 }
@@ -131,14 +130,9 @@ public class Ex01_P1 {
         } while (swap);
         // FINAL METODO BURBUJA
 
-        if (!archivo.exists()) {
-            archivo.createNewFile();
-        }
+        try ( FileWriter output = new FileWriter(path);  BufferedWriter fichero = new BufferedWriter(output)) {
 
-        try ( FileWriter output = new FileWriter(archivo);  BufferedWriter fichero = new BufferedWriter(output)) {
-            // COMO EL METODO BURBUJA ORDENA DE MENOR A MAYOR ESCRIBIMOS DE FORMA INVERSA
-            // DEL ARRAY HACIA EL ARCHIVO
-            for (int i = nombreEquipos.length - 1; i >= 0; i--) {
+            for (int i = 0; i < nombreEquipos.length; i++) {
 
                 fichero.write(nombreEquipos[i] + " -> " + puntuacion[i] + "\n");
 
