@@ -7,17 +7,12 @@ public class Ex01_P1 {
 
     public static void main(String[] args) throws IOException {
 
-        String path = "C:\\Users\\thiri\\Documents\\Compartir\\resultatsLOL.txt";
+        // CAMBIAR ESTA RUTA PARA ELEGIR LA UBICACIÓN DEL FICHERO
+        String pathLectura = "C:\\Users\\thiri\\Documents\\Compartir\\resultatsLOL.txt";
+        String pathEscritura = "C:\\Users\\thiri\\Documents\\Compartir\\classificacioLOL.txt";
 
-        HashMap<String, Integer> clasiLol = lectura(path);
-
-        String[] cositas = clasiLol.toString().split(", |=|\\{|\\}");
-
-        System.out.println(clasiLol);
-
-        for (int i = 0; i < cositas.length; i++) {
-            System.out.println(cositas[i]);
-        }
+        HashMap<String, Integer> clasiLol = lectura(pathLectura);
+        escritura(clasiLol, pathEscritura);
 
     }
 
@@ -49,7 +44,7 @@ public class Ex01_P1 {
 
                 if (equiposDone) {
                     for (int i = 0; i < nEquipos.length; i++) {
-
+                        // PRIMERO METEMOS LOS EQUIPOS EN EL ARRAY
                         if (aux[0].equals(nEquipos[i])) {
                             equipoA = i;
                         } else if (aux[2].equals(nEquipos[i])) {
@@ -57,7 +52,7 @@ public class Ex01_P1 {
                         }
                     }
                 } else {
-
+                    // DESPUES METEMOS LAS PUNTUACIONES
                     nEquipos[posicion] = aux[0];
                     equipoA = posicion;
 
@@ -69,7 +64,7 @@ public class Ex01_P1 {
                     posicion++;
 
                 }
-
+                // COMPARAMOS PUNTUACIONES ENTRE EQUIPOS
                 if (Integer.parseInt(aux[1]) > Integer.parseInt(aux[3])) {
                     puntosEquipos[equipoA]++;
                 } else {
@@ -82,7 +77,7 @@ public class Ex01_P1 {
         }
 
         for (int i = 0; i < nEquipos.length; i++) {
-
+            // METEMOS LA INFORMACIÓN DE LOS DOS ARRAYS EN EL MAPA
             equipos.put(nEquipos[i], puntosEquipos[i]);
 
         }
@@ -90,7 +85,69 @@ public class Ex01_P1 {
 
     }
 
-    public static void escritura(HashMap<String, Integer> equipos) {
+    public static void escritura(HashMap<String, Integer> clasiLol, String path) throws IOException {
 
+        File archivo = new File(path);
+        // PASAMOS EL HashMap A UN ARRAY
+        String[] equipos = clasiLol.toString().split(", |=|\\{|\\}");
+        // ARRAYS DONDE GUARDAREMOS EL CONTENIDO DEL HashMap
+        String[] nombreEquipos = new String[10];
+        int[] puntuacion = new int[10];
+
+        int aux = 0;
+        //PASAMOS EL CONTENIDO DEL HashMap A LOS ARRAYS
+        for (int i = 1; i < equipos.length - 1; i += 2) {
+
+            nombreEquipos[aux] = equipos[i];
+            puntuacion[aux] = Integer.parseInt(equipos[i + 1]);
+
+            aux++;
+        }
+
+        boolean swap;
+        int mayor;
+        String auxMayor;
+        aux = puntuacion.length;
+
+        // METODO BURBUJA
+        do {
+            swap = false;
+            for (int i = 0; i < aux; i++) {
+
+                if (i < aux - 1 && puntuacion[i] > puntuacion[i + 1]) {
+                    mayor = puntuacion[i];
+                    puntuacion[i] = puntuacion[i + 1];
+                    puntuacion[i + 1] = mayor;
+
+                    auxMayor = nombreEquipos[i];
+                    nombreEquipos[i] = nombreEquipos[i + 1];
+                    nombreEquipos[i + 1] = auxMayor;
+
+                    swap = true;
+                }
+            }
+            aux--;
+
+        } while (swap);
+        // FINAL METODO BURBUJA
+
+        if (!archivo.exists()) {
+            archivo.createNewFile();
+        }
+
+        try ( FileWriter output = new FileWriter(archivo);  BufferedWriter fichero = new BufferedWriter(output)) {
+            // COMO EL METODO BURBUJA ORDENA DE MENOR A MAYOR ESCRIBIMOS DE FORMA INVERSA
+            // DEL ARRAY HACIA EL ARCHIVO
+            for (int i = nombreEquipos.length - 1; i >= 0; i--) {
+
+                fichero.write(nombreEquipos[i] + " -> " + puntuacion[i] + "\n");
+
+            }
+
+            System.out.println("La escritura del archivo se ha realizado correctamente.");
+
+        } catch (IOException e) {
+            System.err.format("IOException: %s%n", e);
+        }
     }
 }
