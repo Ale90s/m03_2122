@@ -10,7 +10,7 @@ public class test {
         int iteraciones = in.nextInt();
 
         for (int i = 0; i < iteraciones; i++) {
-            System.out.println("XD");
+            System.out.println("test");
         }
         in.close();
     }
