@@ -2,5 +2,8 @@
     "java.project.sourcePaths": [
         "Acepta_El_Reto/src",
         "UF3_Ejercicios/src/p1"
-    ]
+    ],
+    "files.exclude": {
+        "**/*.class": true
+    }
 }
