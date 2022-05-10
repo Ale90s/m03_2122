@@ -6,7 +6,9 @@ public class test {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Cuántas iteraciones?");
-        int iteraciones = 7;
+
+        int iteraciones = in.nextInt();
+
         for (int i = 0; i < iteraciones; i++) {
             System.out.println("XD");
         }
