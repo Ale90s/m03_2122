@@ -16,5 +16,6 @@ public class Ex457_LioConLosCasosDePrueba {
             
             n = in.nextInt();
         }
+        in.close();
     }
 }

@@ -29,6 +29,6 @@ public class Ex167_Fractales {
             } while (longitudFractalMasGrande != 0);
             System.out.println(sumatorio);
         }
-
+        in.close();
     }
 }

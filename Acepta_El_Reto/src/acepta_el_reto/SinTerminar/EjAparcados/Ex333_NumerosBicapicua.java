@@ -51,6 +51,7 @@ public class Ex333_NumerosBicapicua {
             }
             n = in.nextInt();
         }
+        in.close();
     }
 
     public static int numAlReves(int n) {

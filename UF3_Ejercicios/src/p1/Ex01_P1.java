@@ -1,5 +1,3 @@
-package p1;
-
 import java.io.*;
 import java.util.*;
 
@@ -8,8 +6,8 @@ public class Ex01_P1 {
     public static void main(String[] args) throws IOException {
 
         // CAMBIAR ESTA RUTA PARA ELEGIR LA UBICACIÓN DEL FICHERO
-        String pathLectura = "C:\\Users\\thiri\\Documents\\Compartir\\resultatsLOL.txt";
-        String pathEscritura = "C:\\Users\\thiri\\Documents\\Compartir\\classificacioLOL.txt";
+        String pathLectura = "/home/aalgarra/Desktop/resultatsLOL.txt";
+        String pathEscritura = "/home/aalgarra/Desktop/classificacioLOL.txt";
 
         HashMap<String, Integer> clasiLol = lectura(pathLectura);
         escritura(clasiLol, pathEscritura);
@@ -81,8 +79,9 @@ public class Ex01_P1 {
             equipos.put(nEquipos[i], puntosEquipos[i]);
 
         }
+        archivo.close();
         return equipos;
-
+        
     }
 
     public static void escritura(HashMap<String, Integer> clasiLol, String path) throws IOException {

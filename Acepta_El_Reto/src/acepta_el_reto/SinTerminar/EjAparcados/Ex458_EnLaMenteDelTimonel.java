@@ -52,5 +52,6 @@ public class Ex458_EnLaMenteDelTimonel {
 
             n = in.nextInt();
         }
+        in.close();
     }
 }

@@ -10,4 +10,8 @@ package acepta_el_reto.SinTerminar.EjAparcados;
  */
 public class Ex122_AvituallamientoEtapasCiclistas {
     
+    public static void main(String[] args) {
+        
+        System.out.println("Hola Mundo");
+    }
 }

@@ -74,5 +74,6 @@ public class Ex119_EscudosEjercitoRomano {
                 // de los escudos, y vuelve a preguntar por otro escuadron, reseteo.
             }
         }
+        in.close();
     }
 }

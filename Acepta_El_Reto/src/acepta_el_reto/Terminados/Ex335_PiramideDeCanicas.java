@@ -26,5 +26,6 @@ public class Ex335_PiramideDeCanicas {
             System.out.println(aux);
 
         }
+        in.close();
     }
 }

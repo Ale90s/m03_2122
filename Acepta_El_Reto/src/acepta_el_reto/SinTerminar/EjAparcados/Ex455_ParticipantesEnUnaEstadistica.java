@@ -21,5 +21,6 @@ public class Ex455_ParticipantesEnUnaEstadistica {
                 System.out.printf("%.0f%n", 100 / (100 - estadistica));
             }
         }
+        in.close();
     }
 }

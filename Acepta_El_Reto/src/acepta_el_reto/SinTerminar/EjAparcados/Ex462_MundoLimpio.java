@@ -11,7 +11,8 @@ public class Ex462_MundoLimpio {
         int n = in.nextInt();
 
         for (int i = 0; i < n; i++) {
-            
+
         }
+        in.close();
     }
 }

@@ -32,5 +32,6 @@ public class Ex158_LosSaltosDeMario {
             }
             System.out.printf("%d %d%n", arriba, abajo);
         }
+        in.close();
     }
 }

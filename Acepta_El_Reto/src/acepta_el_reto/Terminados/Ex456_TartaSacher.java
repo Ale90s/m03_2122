@@ -16,5 +16,6 @@ public class Ex456_TartaSacher {
             
             System.out.printf("%.0f%n",Math.ceil(nCuadros / cuadros));
         }
+        in.close();
     }
 }
