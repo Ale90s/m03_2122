@@ -3,7 +3,8 @@
         "UF3_Ejercicios/src/p1",
         "Pruebas/src/pruebas",
         "Acepta_El_Reto/src",
-        "javaCourse/src/javacourse"
+        "javaCourse/src/javacourse",
+        "UF4_Ejercicios/a1"
     ],
     "files.exclude": {
         "**/*.class": true
