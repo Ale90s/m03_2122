@@ -61,11 +61,13 @@ public class Persones {
 
     public void mostraInfo() {
 
-        System.out.println("Nombre alumno " + this.nombre);
+        System.out.println("Nom alumne " + this.nom);
 
-        System.out.println("edad alumno " + this.edat);
+        System.out.println("Edat alumne " + this.edat);
 
-        System.out.println("sexo alumno " + this.sexe);
+        System.out.println("Sexe alumne " + this.sexe);
+
+        System.out.println("DNI alumne" + this.DNI);
 
     }
 
