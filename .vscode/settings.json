@@ -1,8 +1,9 @@
 {
     "java.project.sourcePaths": [
         "UF3_Ejercicios/src/p1",
+        "Pruebas/src/pruebas",
         "Acepta_El_Reto/src",
-        "Pruebas/src/pruebas"
+        "javaCourse/src/javacourse"
     ],
     "files.exclude": {
         "**/*.class": true
