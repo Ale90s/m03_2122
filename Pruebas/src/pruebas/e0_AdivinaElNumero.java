@@ -1,5 +1,3 @@
-package pruebas;
-
 import java.util.Scanner;
 
 public class e0_AdivinaElNumero {
@@ -22,6 +20,6 @@ public class e0_AdivinaElNumero {
                 valor = in.nextInt();
             }
         } while (valor != 20);
-        
+        in.close();
     }
 }

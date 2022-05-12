@@ -1,5 +1,3 @@
-package pruebas;
-
 import javax.swing.JOptionPane;
 
 public class e1_GuiTests {
