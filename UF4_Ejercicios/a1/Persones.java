@@ -5,6 +5,13 @@ public class Persones {
     private char sexe;
     private int DNI;
 
+    public Persones(String nom, int edat, char sexe, int DNI) {
+        this.nom = nom;
+        this.edat = edat;
+        this.sexe = sexe;
+        this.DNI = DNI;
+    }
+
     public String getNom() {
         return this.nom;
     }
@@ -50,7 +57,7 @@ public class Persones {
         this.DNI = DNI;
     }
 
-    public void aumentaEdat() {
+    public void cumpleanys() {
         this.edat++;
     }
 
