@@ -1,0 +1,10 @@
+public class persones {
+
+    private String nom;
+    private int edat;
+    private char sexe;
+    private int DNI;
+
+    
+
+}
