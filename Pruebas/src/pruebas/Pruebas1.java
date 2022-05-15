@@ -1,5 +1,3 @@
-package pruebas;
-
 import java.util.Scanner;
 
 public class Pruebas1 {
@@ -31,5 +29,6 @@ public class Pruebas1 {
             System.out.println(mayor);
             n = in.nextInt();
         }
+        in.close();
     }
 }

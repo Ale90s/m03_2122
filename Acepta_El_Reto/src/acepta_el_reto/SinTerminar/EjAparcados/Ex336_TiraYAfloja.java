@@ -10,10 +10,11 @@ public class Ex336_TiraYAfloja {
         
         while (true) {
             
-            int nKids = in.nextInt();
+            //int nKids = in.nextInt();
             
-            
+            break;
             
         }
+        in.close();
     }
 }

@@ -46,5 +46,6 @@ public class Ex405_ImprimiendoPaginasSueltas {
                 System.out.printf("%d,%d,%d,%d%n", a, b, c, d);
             }
         } while (true);
+        in.close();
     }
 }

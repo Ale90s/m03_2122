@@ -24,5 +24,6 @@ public class Ex402_Puzzle {
             }
             n = in.nextInt();
         }
+        in.close();
     }
 }

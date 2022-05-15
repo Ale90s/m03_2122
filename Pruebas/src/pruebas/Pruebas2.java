@@ -1,5 +1,3 @@
-package pruebas;
-
 import java.util.Scanner;
 
 public class Pruebas2 {
@@ -57,5 +55,6 @@ public class Pruebas2 {
 
             n = in.nextInt();
         }
+        in.close();
     }
 }

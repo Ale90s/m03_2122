@@ -1,12 +1,11 @@
-package pruebas;
-
 import java.util.Scanner;
 
 public class Pruebas4 {
 
     public static void main(String[] args) {
         
-        int a = 5, b = 0, aux = a;
+        Scanner in = new Scanner(System.in);
+        int a = 5, aux = a;
         
         for (int i = 0; i < 10; i++) {
             
@@ -14,9 +13,9 @@ public class Pruebas4 {
             
             if(a == aux + 3) {
                 a = 0;
-                b++;
             }
             
         }
+        in.close();
     }
 }

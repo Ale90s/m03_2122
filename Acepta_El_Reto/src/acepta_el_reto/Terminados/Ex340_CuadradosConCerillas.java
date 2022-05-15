@@ -18,5 +18,6 @@ public class Ex340_CuadradosConCerillas {
             resultado = (horizontal * (vertical + 1)) + (vertical * (horizontal + 1));
             System.out.println(resultado);
         }
+        in.close();
     }
 }

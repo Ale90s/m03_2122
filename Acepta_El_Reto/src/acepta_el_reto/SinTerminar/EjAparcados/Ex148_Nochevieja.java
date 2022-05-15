@@ -7,7 +7,7 @@ public class Ex148_Nochevieja {
     public static void main(String[] args) {
         
         Scanner in = new Scanner(System.in);
-            String horas, minutos;
+            //String horas, minutos;
             
             int test = 0;
             
@@ -18,6 +18,6 @@ public class Ex148_Nochevieja {
             
         }while (test == 0);
         
-        
+        in.close();
     }
 }

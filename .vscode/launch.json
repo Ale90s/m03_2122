@@ -1,0 +1,168 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex01_P1",
+            "request": "launch",
+            "mainClass": "Ex01_P1",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex122_AvituallamientoEtapasCiclistas",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex122_AvituallamientoEtapasCiclistas",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex148_Nochevieja",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex148_Nochevieja",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex167_Fractales",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex167_Fractales",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex174_Año2013",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex174_Año2013",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex333_NumerosBicapicua",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex333_NumerosBicapicua",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex336_TiraYAfloja",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex336_TiraYAfloja",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex402_Puzzle",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex402_Puzzle",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex405_ImprimiendoPaginasSueltas",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex405_ImprimiendoPaginasSueltas",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex455_ParticipantesEnUnaEstadistica",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex455_ParticipantesEnUnaEstadistica",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex457_LioConLosCasosDePrueba",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex457_LioConLosCasosDePrueba",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex458_EnLaMenteDelTimonel",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex458_EnLaMenteDelTimonel",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex462_MundoLimpio",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.SinTerminar.EjAparcados.Ex462_MundoLimpio",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex116_HolaMundo",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.Terminados.Ex116_HolaMundo",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex119_EscudosEjercitoRomano",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.Terminados.Ex119_EscudosEjercitoRomano",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex158_LosSaltosDeMario",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.Terminados.Ex158_LosSaltosDeMario",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex335_PiramideDeCanicas",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.Terminados.Ex335_PiramideDeCanicas",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex340_CuadradosConCerillas",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.Terminados.Ex340_CuadradosConCerillas",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex402_Puzzle(1)",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.Terminados.Ex402_Puzzle",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex407_RebotandoEnElParchis",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.Terminados.Ex407_RebotandoEnElParchis",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex456_TartaSacher",
+            "request": "launch",
+            "mainClass": "acepta_el_reto.Terminados.Ex456_TartaSacher",
+            "projectName": "m03_2122_5b7c1ace"
+        },
+        {
+            "type": "java",
+            "name": "Launch test",
+            "request": "launch",
+            "mainClass": "test",
+            "projectName": "m03_2122_5b7c1ace"
+        }
+    ]
+}

@@ -69,5 +69,6 @@ public class Ex174_Año2013 {
 
         } while (añosPasados == true || añosFuturos == true);
         System.out.println(contador);
+        in.close();
     }
 }

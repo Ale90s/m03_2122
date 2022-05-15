@@ -24,5 +24,6 @@ public class Ex407_RebotandoEnElParchis {
                 }
             }
         } while (true);
+        in.close();
     }
 }
