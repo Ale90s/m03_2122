@@ -5,10 +5,9 @@ public class Persones {
     private char sexe;
     private int DNI;
 
-    public Persones(String nom, int edat, char sexe, int DNI) {
+    public Persones(String nom, int edat, int DNI) {
         this.nom = nom;
         this.edat = edat;
-        this.sexe = sexe;
         this.DNI = DNI;
     }
 

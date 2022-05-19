@@ -2,9 +2,11 @@ public class PersonesEx02 {
 
     public static void main(String[] args) {
 
-        Persones Ale = new Persones("Alejandro Algarra", 22, 'H', 24314124);
+        Persones Ale = new Persones("Alejandro Algarra", 22, 24314124);
 
-        Persones Pedro = new Persones("Pedro Algarra", 24, 'H', 9994343);
+        Persones Pedro = new Persones("Pedro Algarra", 24, 9994343);
+
+        Pedro.setSexe('r');
 
         System.out.println("Información de Ale:");
         Ale.mostraInfo();
