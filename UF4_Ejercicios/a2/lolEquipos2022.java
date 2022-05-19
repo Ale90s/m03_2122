@@ -1,25 +1,23 @@
-import java.util.*;
 import java.io.*;
 
 public class lolEquipos2022 {
     public static void main(String[] args) throws IOException {
 
-        String pathLectura = "C:\\Users\\aalgarra\\Desktop\\resultatsLOL.txt";
-        String pathEscritura = "C:\\Users\\aalgarra\\Desktop\\resultadosCompeti.txt";
+        String pathLectura = "D:\\thiri\\desktop\\resultatsLOL.txt";
+        // String pathEscritura = "C:\\Users\\aalgarra\\Desktop\\resultadosCompeti.txt";
+        Competicion[] equipos = new Competicion[10];
 
-        Competicion[] equipos = lectura(pathLectura);
-
-        escritura(pathEscritura, equipos);
+        lectura(pathLectura, equipos);
     }
 
-    public static Competicion[] lectura(String path) throws IOException {
+    public static void lectura(String path, Competicion[] equipos) throws IOException {
 
         FileReader input = new FileReader(path);
         BufferedReader archivo = new BufferedReader(input);
         String linea;
         boolean equiposMetidos = false;
         String aux[];
-        String equipoA, equipoB;
+        int contador = 0;
 
         while ((linea = archivo.readLine()) != null) {
 
@@ -27,27 +25,30 @@ public class lolEquipos2022 {
 
                 aux = linea.split("[:-]+");
 
-                equipoA = aux[0];
-                equipoB = aux[2];
-
                 if (equiposMetidos) {
-                    
-                } else {
 
+                } else {
+                    equipos[contador].setNomEquipos(aux[0]);
+                    contador++;
+                    equipos[contador].setNomEquipos(aux[0]);
+                    contador++;
                 }
             } else {
                 equiposMetidos = true;
             }
         }
-
-        Competicion test = new Competicion();
-
-        Competicion[] equipos = { test };
-
-        return equipos;
+        archivo.close();
     }
 
-    public static void escritura(String path, Competicion[] equipos) {
-    }
+    public static void imprimeEquipos(Competicion[] equipos) {
 
+        for (int i = 0; i < equipos.length; i++) {
+
+            System.out.println("Nombre equipo: " + equipos[i].getNomEquipos());
+            System.out.println("Puntos: " + equipos[i].getTotal_punts());
+            System.out.println("Victorias: " + equipos[i].getTotal_Victories());
+            System.out.println("Derrotas: " + equipos[i].getTotal_derrotes());
+
+        }
+    }
 }
