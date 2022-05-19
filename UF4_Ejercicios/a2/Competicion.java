@@ -2,8 +2,16 @@ public class Competicion {
 
     private String nomEquipos;
     private int total_punts;
-    private int total_Victories;
+    private int total_victories;
     private int total_derrotes;
+
+    public Competicion(String nomEquipos, int total_punts, int total_derrotes, int total_victories) {
+
+        this.nomEquipos = nomEquipos;
+        this.total_punts = total_punts;
+        this.total_derrotes = total_derrotes;
+        this.total_victories = total_victories;
+    }
 
     public String getNomEquipos() {
         return this.nomEquipos;
@@ -22,11 +30,11 @@ public class Competicion {
     }
 
     public int getTotal_Victories() {
-        return this.total_Victories;
+        return this.total_victories;
     }
 
     public void setTotal_Victories(int total_Victories) {
-        this.total_Victories = total_Victories;
+        this.total_victories = total_Victories;
     }
 
     public int getTotal_derrotes() {

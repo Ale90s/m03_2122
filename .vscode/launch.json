@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch prueba",
+            "request": "launch",
+            "mainClass": "prueba",
+            "projectName": "m03_2122_cbaba58a"
+        },
+        {
+            "type": "java",
             "name": "Launch prueba2",
             "request": "launch",
             "mainClass": "prueba2",
