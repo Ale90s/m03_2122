@@ -31,10 +31,8 @@ public class lolEquipos2022 {
                 equipoB = aux[2];
 
                 if (equiposMetidos) {
-
-                } else {
-
                     
+                } else {
 
                 }
             } else {

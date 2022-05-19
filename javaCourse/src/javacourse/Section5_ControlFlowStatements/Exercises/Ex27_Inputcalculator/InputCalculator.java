@@ -32,6 +32,6 @@ public class InputCalculator {
         }
 
         System.out.printf("SUM = %d AVG = %d%n", sum, average);
-
+        in.close();
     }
 }
