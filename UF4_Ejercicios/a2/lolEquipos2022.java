@@ -3,7 +3,7 @@ import java.io.*;
 public class lolEquipos2022 {
     public static void main(String[] args) throws IOException {
 
-        String pathLectura = "D:\\thiri\\desktop\\resultatsLOL.txt";
+        String pathLectura = "C:\\users\\aalgarra\\desktop\\resultatsLOL.txt";
         Competicion[] equipos = new Competicion[10];
 
         lectura(pathLectura, equipos);
@@ -67,7 +67,7 @@ public class lolEquipos2022 {
 
         for (int i = 0; i < equipos.length; i++) {
 
-            System.out.println("EQUIPO NUMERO" + (i + 1));
+            System.out.println("EQUIPO NUMERO " + (i + 1));
             System.out.println("Nombre equipo: " + equipos[i].getNomEquipos());
             System.out.println("Puntos: " + equipos[i].getTotal_punts());
             System.out.println("Victorias: " + equipos[i].getTotal_Victories());
