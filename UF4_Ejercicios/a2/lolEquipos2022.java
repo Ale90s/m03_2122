@@ -3,7 +3,7 @@ import java.io.*;
 public class lolEquipos2022 {
     public static void main(String[] args) throws IOException {
 
-        String pathLectura = "C:\\thiri\\desktop\\resultatsLOL.txt";
+        String pathLectura = "C:\\Users\\aalgarra\\Desktop\\resultatsLOL.txt";
         Competicion[] equipos = new Competicion[10];
 
         lectura(pathLectura, equipos);
