@@ -1,6 +1,6 @@
 public class CreaPersonajes {
     public static void main(String[] args) {
-
+        
     }
 
     public void creaPersonajes() {

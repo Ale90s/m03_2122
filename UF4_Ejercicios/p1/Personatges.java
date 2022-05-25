@@ -8,6 +8,11 @@ public abstract class Personatges {
     protected double inteligencia;
     protected double sort;
 
+    protected double ps = constitucio + forca; // salut
+    protected double pd; // dany
+    protected double pa = inteligencia + sort; // probabilitat d'atacar
+    protected double pe = velocitat + sort + inteligencia; // probabilitat d'esquivar
+
     protected int niv;
     protected int pex;
 
