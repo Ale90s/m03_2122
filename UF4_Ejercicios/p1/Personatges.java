@@ -1,6 +1,7 @@
 public abstract class Personatges {
 
     protected String nom;
+    Armas arma1;
 
     protected double forca;
     protected double constitucio;
@@ -9,8 +10,8 @@ public abstract class Personatges {
     protected double sort;
 
     protected double ps = constitucio + forca; // salut
-    protected double pd; // dany
-    protected double pa = inteligencia + sort; // probabilitat d'atacar
+    protected double pd = (forca + arma1.getWpow()) / 4; // dany
+    protected double pa = inteligencia + sort + arma1.getWvel(); // probabilitat d'atacar
     protected double pe = velocitat + sort + inteligencia; // probabilitat d'esquivar
 
     protected int niv;
