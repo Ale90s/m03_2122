@@ -1,3 +1,5 @@
+package p1.Personatges;
+
 public class Guerrer extends Personatges {
 
     public Guerrer(String nom, double forca, double constitucio, double velocitat, double inteligencia,

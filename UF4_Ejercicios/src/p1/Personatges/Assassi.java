@@ -1,3 +1,5 @@
+package p1.Personatges;
+
 public class Assassi extends Personatges {
 
     public Assassi(String nom, double forca, double constitucio, double velocitat, double inteligencia,

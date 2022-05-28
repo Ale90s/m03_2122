@@ -1,3 +1,5 @@
+package p1.Personatges;
+
 public class Cavaller extends Personatges {
 
     public Cavaller(String nom, double forca, double constitucio, double velocitat, double inteligencia,

@@ -1,3 +1,7 @@
+package p1.Personatges;
+
+import p1.Armas.*;
+
 public abstract class Personatges {
 
     protected String nom;
@@ -7,6 +11,13 @@ public abstract class Personatges {
     protected double velocitat;
     protected double inteligencia;
     protected double sort;
+
+    protected double ps; // salut
+    protected double pd; // dany
+    protected double pa; // probabilitat d'atacar
+    protected double pe; // probabilitat d'esquivar
+
+    Armas ArmaPersonaje;
 
     protected int niv;
     protected int pex;
@@ -21,6 +32,13 @@ public abstract class Personatges {
         this.sort = sort;
         this.niv = 0;
         this.pex = 0;
+    }
+
+    public void calculaDerivades() {
+        this.ps = constitucio + forca; // salut
+        this.pd = (forca + ArmaPersonaje.getWpow()) / 4; // dany
+        this.pa = inteligencia + sort + ArmaPersonaje.getWvel(); // probabilitat d'atacar
+        this.pe = velocitat + sort + inteligencia; // probabilitat d'esquivar
     }
 
     public String getNom() {

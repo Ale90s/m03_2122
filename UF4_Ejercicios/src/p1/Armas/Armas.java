@@ -1,15 +1,27 @@
-public class Armas {
+package p1.Armas;
 
+public abstract class Armas {
+
+    private String nombre;
     private double wpow; // Poder del arma
     private double wvel; // Velocidad del arma
 
-    Armas(double wpow, double wvel) {
+    public Armas(String nombre, double wpow, double wvel) {
+        this.nombre = nombre;
         this.wpow = wpow;
         this.wvel = wvel;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public double getWpow() {
-        return this.wpow;
+        return wpow;
     }
 
     public void setWpow(double wpow) {
@@ -17,7 +29,7 @@ public class Armas {
     }
 
     public double getWvel() {
-        return this.wvel;
+        return wvel;
     }
 
     public void setWvel(double wvel) {
