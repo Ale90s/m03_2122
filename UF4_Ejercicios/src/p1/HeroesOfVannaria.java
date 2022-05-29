@@ -1,6 +1,7 @@
 package p1;
 
 import java.io.*;
+import java.util.Scanner;
 import p1.Armas.*;
 import p1.Personatges.*;
 
@@ -24,8 +25,32 @@ public class HeroesOfVannaria {
             contador++;
         }
         
-        for (int i = 0; i < personajes.length; i++) {
-            personajes[i].getcaracteristicas();
+        System.out.println("Los personajes se han creado satisfactoriamente");
+        
+        Scanner in = new Scanner(System.in);
+        
+        System.out.println("Qué quieres hacer ahora?");
+        System.out.println("1 - jugar (duelo 1v1 entre dos personajes)");
+        System.out.println("2 - Guardar partida y salir");
+        System.out.println("3 - Salir sin guardar");
+
+        boolean acabar = false;
+        
+        while (!acabar) {
+            switch (in.nextInt()) {
+            case 1:
+                jugar(personajes);
+                break;
+            case 2:
+                System.out.println("Guardando partida y saliendo...");
+                acabar = true;
+                break;
+            case 3:
+                System.out.println("Saliendo sin guardar partida...");
+                acabar = true;
+                break;
+            
+            }
         }
     }
 
@@ -88,5 +113,20 @@ public class HeroesOfVannaria {
 
         return personaje;
     }
-
+    
+    public static void jugar(Personatges[] personajes) {
+        
+        System.out.println("Bienvenido a Herores of Vannaria");
+        
+        System.out.println("Personajes disponibles:");
+        System.out.println("");
+        System.out.println("");
+        
+        for (int i = 0; i < personajes.length; i++) {
+            System.out.println("PERSONAJE " + (i+1));
+            personajes[i].getcaracteristicas();
+        }
+        
+        
+    }
 }

@@ -45,7 +45,6 @@ public abstract class Personatges {
     public void getcaracteristicas() {
 
         calculaDerivades();
-        System.out.println("");
         System.out.println("Características de " + this.nom);
         System.out.println("Fuerza : " + this.forca);
         System.out.println("Constitución : " + this.constitucio);
