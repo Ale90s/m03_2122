@@ -23,15 +23,16 @@ public abstract class Personatges {
     protected int pex;
 
     public Personatges(String nom, double forca, double constitucio, double velocitat, double inteligencia,
-            double sort) {
+            double sort, Armas arma, int niv, int pex) {
         this.nom = nom;
         this.forca = forca;
         this.constitucio = constitucio;
         this.velocitat = velocitat;
         this.inteligencia = inteligencia;
         this.sort = sort;
-        this.niv = 0;
-        this.pex = 0;
+        this.ArmaPersonaje = arma;
+        this.niv = niv;
+        this.pex = pex;
     }
 
     public void calculaDerivades() {
@@ -39,6 +40,29 @@ public abstract class Personatges {
         this.pd = (forca + ArmaPersonaje.getWpow()) / 4; // dany
         this.pa = inteligencia + sort + ArmaPersonaje.getWvel(); // probabilitat d'atacar
         this.pe = velocitat + sort + inteligencia; // probabilitat d'esquivar
+    }
+
+    public void getcaracteristicas() {
+
+        calculaDerivades();
+        System.out.println("");
+        System.out.println("Características de " + this.nom);
+        System.out.println("Fuerza : " + this.forca);
+        System.out.println("Constitución : " + this.constitucio);
+        System.out.println("Velocidad : " + this.velocitat);
+        System.out.println("Inteligencia : " + this.inteligencia);
+        System.out.println("Suerte : " + this.sort);
+        System.out.println("-------------------");
+        System.out.println("Tipo de arma: " + this.ArmaPersonaje);
+        System.out.println("-------------------");
+        System.out.println("Nivel : " + this.niv);
+        System.out.println("Experiencia : " + this.pex);
+        System.out.println("-------------------");
+        System.out.println("Salud : " + this.ps);
+        System.out.println("Daño : " + this.pd);
+        System.out.println("Prob. Atacar : " + this.pa);
+        System.out.println("Prob. Esquivar : " + this.pe);
+        System.out.println("");
     }
 
     public String getNom() {
