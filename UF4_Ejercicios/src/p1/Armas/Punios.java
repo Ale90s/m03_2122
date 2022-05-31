@@ -1,8 +1,8 @@
 package p1.Armas;
 
-public class Puños extends Armas {
+public class Punios extends Armas {
 
-    public Puños() {
+    public Punios() {
 
         super("Puños", 5.0, 5.0);
 

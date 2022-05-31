@@ -45,14 +45,7 @@ public abstract class Personatges {
     public void getcaracteristicas() {
 
         calculaDerivades();
-        System.out.println("Características de " + this.nom);
-        System.out.println("Fuerza : " + this.forca);
-        System.out.println("Constitución : " + this.constitucio);
-        System.out.println("Velocidad : " + this.velocitat);
-        System.out.println("Inteligencia : " + this.inteligencia);
-        System.out.println("Suerte : " + this.sort);
-        System.out.println("-------------------");
-        System.out.println("Tipo de arma: " + this.ArmaPersonaje);
+        System.out.println("Tipo de arma: " + this.ArmaPersonaje.getNombre());
         System.out.println("-------------------");
         System.out.println("Nivel : " + this.niv);
         System.out.println("Experiencia : " + this.pex);
@@ -127,4 +120,53 @@ public abstract class Personatges {
     public void setPex(int pex) {
         this.pex = pex;
     }
+
+    public double getPs() {
+        return ps;
+    }
+
+    public void setPs(double ps) {
+        this.ps = ps;
+    }
+
+    public double getPd() {
+        return pd;
+    }
+
+    public void setPd(double pd) {
+        this.pd = pd;
+    }
+
+    public double getPa() {
+        return pa;
+    }
+
+    public void setPa(double pa) {
+        this.pa = pa;
+    }
+
+    public double getPe() {
+        return pe;
+    }
+
+    public void setPe(double pe) {
+        this.pe = pe;
+    }
+
+    public Armas getArmaPersonaje() {
+        return ArmaPersonaje;
+    }
+
+    public void setArmaPersonaje(Armas ArmaPersonaje) {
+        this.ArmaPersonaje = ArmaPersonaje;
+    }
+
+    public String tipoPersonaje() {
+
+        String[] tipoPersonaje = this.getClass().toString().split("[.]");
+
+        return tipoPersonaje[2];
+
+    }
+
 }
