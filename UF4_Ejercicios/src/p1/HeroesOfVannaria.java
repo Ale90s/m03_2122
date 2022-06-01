@@ -44,7 +44,7 @@ public class HeroesOfVannaria {
                     personajes.add(creaPersonajeManual());
                     break;
                 case 3:
-
+                    modificarPersonaje(personajes);
                     break;
                 case 4:
                     System.out.println("Guardando partida y saliendo...");
@@ -246,7 +246,7 @@ public class HeroesOfVannaria {
         nombre = in.nextLine();
         System.out.println("Elige la clase:");
         do {
-            System.out.println("1. Guerrero\n2. Asesino\n3. Caballero\n4.Valquiria");
+            System.out.println("1. Guerrero\n2. Asesino\n3. Caballero\n4. Valquiria");
             tipo = in.nextInt();
         } while (tipo > 4 || tipo < 1);
 
@@ -305,6 +305,76 @@ public class HeroesOfVannaria {
         System.out.println("El personaje se ha creado satisfactoriamente.");
         System.out.println("");
         return persona;
+
+    }
+
+    public static void modificarPersonaje(ArrayList<Personatges> persona) {
+        Scanner in = new Scanner(System.in);
+        boolean salir = false;
+        char opciones;
+        int personaje;
+
+        System.out.println("\nQue personaje quieres modificar?");
+
+        for (int i = 0; i < persona.size(); i++) {
+            System.out.println((i + 1) + ". " + persona.get(i).getNom());
+        }
+
+        do {
+            personaje = in.nextInt();
+            if (personaje > persona.size() || personaje < 1) {
+                System.out.println("Pon un n�mero v�lido");
+            }
+        } while (persona.size() < personaje || personaje < 1);
+
+        persona.get(personaje - 1).getcaracteristicas();
+
+        do {
+
+            System.out.println("\n1.Cambiar nombre\n2.Cambiar caracteristicas\n"
+                    + "3.Muestra los datos cambiados\nx.Salir");
+            opciones = in.next().charAt(0);
+            in.nextLine();
+            switch (opciones) {
+                case '1':
+                    System.out.print("Que nombre quieres poner? ");
+                    String nombre = in.nextLine();
+                    persona.get(personaje - 1).setNom(nombre);
+                    break;
+                case '2':
+                    int puntos = 60;
+                    int x = 0;
+
+                    System.out.print("Fuerza: ");
+                    persona.get(personaje - 1).setForca(generarPuntos(x, puntos));
+                    puntos -= persona.get(personaje - 1).getForca();
+
+                    System.out.print("Constitucion: ");
+                    persona.get(personaje - 1).setConstitucio(generarPuntos(x, puntos));
+                    puntos -= persona.get(personaje - 1).getConstitucio();
+
+                    System.out.print("Velocidad: ");
+                    persona.get(personaje - 1).setVelocitat(generarPuntos(x, puntos));
+                    puntos -= persona.get(personaje - 1).getVelocitat();
+
+                    System.out.print("Inteligencia: ");
+                    persona.get(personaje - 1).setInteligencia(generarPuntos(x, puntos));
+                    puntos -= persona.get(personaje - 1).getInteligencia();
+
+                    System.out.print("Suerte: ");
+                    persona.get(personaje - 1).setSort(generarPuntos(x, puntos));
+                    puntos -= persona.get(personaje - 1).getSort();
+
+                    break;
+                case '3':
+                    persona.get(personaje - 1).getcaracteristicas();
+                    break;
+                case 'x':
+                    salir = true;
+                    break;
+            }
+
+        } while (!salir);
 
     }
 
