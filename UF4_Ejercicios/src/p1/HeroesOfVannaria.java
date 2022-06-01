@@ -2,8 +2,8 @@ package p1;
 
 import java.io.*;
 import java.util.*;
-import p1.Armas.*;
 import p1.Personatges.*;
+import p1.Armas.*;
 
 public class HeroesOfVannaria {
 
@@ -18,7 +18,6 @@ public class HeroesOfVannaria {
         String linea;
 
         while ((linea = archivo.readLine()) != null) {
-            System.out.println(linea);
             personajes.add(creaPersonajeAuto(linea));
         }
 
@@ -33,8 +32,9 @@ public class HeroesOfVannaria {
             System.out.println("Qué quieres hacer ahora?");
             System.out.println("1 - jugar (duelo 1v1 entre dos personajes)");
             System.out.println("2 - Crear personaje manualmente");
-            System.out.println("3 - Guardar partida y salir");
-            System.out.println("4 - Salir sin guardar");
+            System.out.println("3 - Modificar Personaje (Nombre y atributos)");
+            System.out.println("4 - Guardar partida y salir");
+            System.out.println("5 - Salir sin guardar");
 
             switch (in.nextInt()) {
                 case 1:
@@ -44,11 +44,14 @@ public class HeroesOfVannaria {
                     personajes.add(creaPersonajeManual());
                     break;
                 case 3:
+
+                    break;
+                case 4:
                     System.out.println("Guardando partida y saliendo...");
                     guardarPartida(personajes);
                     acabar = true;
                     break;
-                case 4:
+                case 5:
                     System.out.println("Saliendo sin guardar partida...");
                     acabar = true;
                     break;
@@ -61,15 +64,118 @@ public class HeroesOfVannaria {
 
         System.out.println("Bienvenido a Herores of Vannaria");
 
-        System.out.println("Personajes disponibles:");
-        System.out.println("");
-        System.out.println("");
+        if (personajes.size() < 2) {
+            System.out.println("No hay suficientes personajes, prueba creando un"
+                    + " personaje manualmente");
+        } else {
+            System.out.println("Personajes disponibles:");
+            System.out.println("");
+            System.out.println("");
 
-        for (int i = 0; i < personajes.size(); i++) {
-            System.out.println(personajes.get(i).getNom() + " - " + personajes.get(i).tipoPersonaje());
-            personajes.get(i).getcaracteristicas();
+            for (int i = 0; i < personajes.size(); i++) {
+                System.out.println("-------- " + (i + 1) + " --------");
+                personajes.get(i).getcaracteristicas();
+            }
+
+            System.out.println("Elige dos personajes: [1-" + personajes.size() + "]");
+
+            Scanner in = new Scanner(System.in);
+            int personajeA = 0, personajeB = 0, n;
+            boolean elegidos = false;
+
+            while (!elegidos) {
+
+                n = in.nextInt();
+
+                if (n >= 1 && n <= personajes.size()) {
+                    if (personajeA == 0) {
+                        System.out.println("Primer personaje elegido. Escoge otro");
+                        personajeA = n;
+                    } else {
+                        if (n != personajeA) {
+                            personajeB = n;
+
+                            elegidos = true;
+
+                            personajeA--;
+                            personajeB--;
+                        } else {
+                            System.out.println("Ese personaje ya lo has elegido...");
+                        }
+                    }
+                } else {
+                    System.out.println("Un número entre [1-" + personajes.size() + "]");
+                }
+            }
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("Personajes elegidos: ");
+            System.out.println("");
+            personajes.get(personajeA).getcaracteristicas();
+            personajes.get(personajeB).getcaracteristicas();
+
+            System.out.print("Empieza el combate!! Pulsa intro para continuar...");
+            System.out.println("");
+            in.nextLine();
+            in.nextLine();
+            boolean atacaA = true;
+
+            while (personajes.get(personajeA).getPs() > 0 && personajes.get(personajeB).getPs() > 0) {
+                if (atacaA) { // primero ataca personajeA y después personajeB por orden
+
+                    pelea(personajes, personajeA, personajeB);
+
+                    atacaA = false;
+                } else {
+
+                    pelea(personajes, personajeB, personajeA);
+
+                    atacaA = true;
+                }
+                System.out.println("");
+            }
+            if (personajes.get(personajeA).getPs() < 0) {
+                System.out.println(personajes.get(personajeB).getNom() + " ha ganado el combate!!");
+                System.out.println("Ha ganado 100 puntos de experiencia!");
+                System.out.println("");
+                personajes.get(personajeB).setPex(personajes.get(personajeB).getPex() + 100);
+            } else {
+                System.out.println(personajes.get(personajeA).getNom() + " ha ganado el combate!!");
+                System.out.println("Ha ganado 100 puntos de experiencia!");
+                System.out.println("");
+                personajes.get(personajeA).setPex(personajes.get(personajeA).getPex() + 100);
+            }
         }
+    }
 
+    public static void pelea(ArrayList<Personatges> personajes, int x, int y) {
+
+        Scanner in = new Scanner(System.in);
+        int[] dados = new int[3];
+
+        System.out.println("Turno de " + personajes.get(x).getNom()
+                + "[PS: " + personajes.get(x).getPs() + "]. Tira los dados para comprobar si acierta el ataque [intro]");
+        in.nextLine();
+        tiradasDados(dados);
+        if (dados[0] + dados[1] + dados[2] <= personajes.get(x).getPa() + 100) {
+            System.out.print("Ha acertado el ataque! El enemigo se va a defender [intro]");
+            System.out.println("");
+            in.nextLine();
+            tiradasDados(dados);
+            if (dados[0] + dados[1] + dados[2] <= personajes.get(y).getPe()) {
+                System.out.println("El enemigo ha esquivado el ataque!");
+            } else {
+                System.out.println("Ha conseguido acertar el ataque!");
+                System.out.println("");
+                personajes.get(y).setPs(personajes.get(y).getPs()
+                        - personajes.get(x).getPd());
+                System.out.println("Le ha bajado " + personajes.get(x).getPd()
+                        + " puntos de vida. (Le quedan " + personajes.get(y).getPs() + ")");
+            }
+        } else {
+            System.out.println("Oh no!!! Ha fallado el ataque!");
+        }
     }
 
     public static void tiradasDados(int[] dados) {

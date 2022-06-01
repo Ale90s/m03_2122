@@ -1,6 +1,6 @@
-package p1.Personatges;
+package HeroesP1.Personatges;
 
-import p1.Armas.*;
+import HeroesP1.Armas.*;
 
 public abstract class Personatges {
 
@@ -18,7 +18,7 @@ public abstract class Personatges {
     protected double pe; // probabilitat d'esquivar
 
     Armas ArmaPersonaje;
-
+    
     protected int niv;
     protected int pex;
 
@@ -41,11 +41,25 @@ public abstract class Personatges {
         this.pa = inteligencia + sort + ArmaPersonaje.getWvel(); // probabilitat d'atacar
         this.pe = velocitat + sort + inteligencia; // probabilitat d'esquivar
     }
+    
+    public void subirNivel() {
+        setForca(this.forca++);
+        setConstitucio(this.constitucio++);
+        setInteligencia(this.inteligencia++);
+        setSort(this.sort++);
+        setVelocitat(this.velocitat++);
+    }
 
     public void getcaracteristicas() {
 
         calculaDerivades();
-        System.out.println(this.getNom() + " - " + this.tipoPersonaje());
+        System.out.println("Características de " + this.nom+" - "+this.tipoPersona());
+        System.out.println("Fuerza : " + this.forca);
+        System.out.println("Constitución : " + this.constitucio);
+        System.out.println("Velocidad : " + this.velocitat);
+        System.out.println("Inteligencia : " + this.inteligencia);
+        System.out.println("Suerte : " + this.sort);
+        System.out.println("-------------------");
         System.out.println("Tipo de arma: " + this.ArmaPersonaje.getNombre());
         System.out.println("-------------------");
         System.out.println("Nivel : " + this.niv);
@@ -55,7 +69,6 @@ public abstract class Personatges {
         System.out.println("Daño : " + this.pd);
         System.out.println("Prob. Atacar : " + this.pa);
         System.out.println("Prob. Esquivar : " + this.pe);
-        System.out.println("");
         System.out.println("");
     }
 
@@ -120,81 +133,10 @@ public abstract class Personatges {
     }
 
     public void setPex(int pex) {
-
-        if (pex < 100) {
-            setNiv(0);
-        } else if (pex == 100) {
-            setNiv(1);
-            subeNivel();
-            System.out.println("Enhorabuena!! Has subido al nivel 1");
-            System.out.println("");
-        } else if (pex == 200) {
-            setNiv(2);
-            subeNivel();
-            System.out.println("Enhorabuena!! Has subido al nivel 2");
-            System.out.println("");
-        } else if (pex == 500) {
-            setNiv(3);
-            subeNivel();
-            System.out.println("Enhorabuena!! Has subido al nivel 3");
-            System.out.println("");
-        } else if (pex == 1000) {
-            setNiv(4);
-            subeNivel();
-            System.out.println("Enhorabuena!! Has subido al nivel 4");
-            System.out.println("");
-        } else if (pex == 2000) {
-            setNiv(5);
-            subeNivel();
-            System.out.println("Enhorabuena!! Has subido al nivel 5");
-            System.out.println("");
-        }
-
         this.pex = pex;
-
     }
-
-    public double getPs() {
-        return ps;
-    }
-
-    public void setPs(double ps) {
-        this.ps = ps;
-    }
-
-    public double getPd() {
-        return pd;
-    }
-
-    public double getPa() {
-        return pa;
-    }
-
-    public double getPe() {
-        return pe;
-    }
-
-    public Armas getArmaPersonaje() {
-        return ArmaPersonaje;
-    }
-
-    public void setArmaPersonaje(Armas ArmaPersonaje) {
-        this.ArmaPersonaje = ArmaPersonaje;
-    }
-
-    public String tipoPersonaje() {
-
-        String[] tipoPersonaje = this.getClass().toString().split("[.]");
-
-        return tipoPersonaje[2];
-
-    }
-
-    public void subeNivel() {
-        setForca(this.forca + 1);
-        setConstitucio(this.constitucio + 1);
-        setVelocitat(this.velocitat + 1);
-        setInteligencia(this.inteligencia + 1);
-        setSort(this.sort + 1);
+    public String tipoPersona(){
+        String [] tipopersona = this.getClass().toString().split("[.]");
+        return tipopersona[2];
     }
 }
