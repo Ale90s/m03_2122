@@ -135,7 +135,7 @@ public class HeroesOfVannaria {
                 }
                 System.out.println("");
             }
-            if (personajes.get(personajeA).getPs() < 0) {
+            if (personajes.get(personajeA).getPs() <= 0) {
                 System.out.println(personajes.get(personajeB).getNom() + " ha ganado el combate!!");
                 System.out.println("Ha ganado 100 puntos de experiencia!");
                 System.out.println("");
@@ -158,13 +158,24 @@ public class HeroesOfVannaria {
                 + "[PS: " + personajes.get(x).getPs() + "]. Tira los dados para comprobar si acierta el ataque [intro]");
         in.nextLine();
         tiradasDados(dados);
-        if (dados[0] + dados[1] + dados[2] <= personajes.get(x).getPa() + 100) {
+        if (dados[0] + dados[1] + dados[2] <= personajes.get(x).getPa()) {
             System.out.print("Ha acertado el ataque! El enemigo se va a defender [intro]");
             System.out.println("");
             in.nextLine();
             tiradasDados(dados);
             if (dados[0] + dados[1] + dados[2] <= personajes.get(y).getPe()) {
                 System.out.println("El enemigo ha esquivado el ataque!");
+
+                if (personajes.get(y).contraAtaca()) { // Asesino contraataca
+                    personajes.get(x).setPs(personajes.get(x).getPs()
+                            - personajes.get(y).getPd());
+                    System.out.println("");
+                    System.out.println(personajes.get(y).getNom() + " ha conseguido contraatacar!");
+                    System.out.println("");
+                    System.out.println("Le ha bajado " + personajes.get(y).getPd()
+                            + " puntos de vida. (Le quedan " + personajes.get(x).getPs() + ")");
+                }
+
             } else {
                 System.out.println("Ha conseguido acertar el ataque!");
                 System.out.println("");
@@ -172,6 +183,7 @@ public class HeroesOfVannaria {
                         - personajes.get(x).getPd());
                 System.out.println("Le ha bajado " + personajes.get(x).getPd()
                         + " puntos de vida. (Le quedan " + personajes.get(y).getPs() + ")");
+                personajes.get(x).recuperaParcialmentPS(); // Caballero recupera vida
             }
         } else {
             System.out.println("Oh no!!! Ha fallado el ataque!");
@@ -214,7 +226,7 @@ public class HeroesOfVannaria {
                         arma, Integer.parseInt(caracteristicas[8]), Integer.parseInt(caracteristicas[9]));
                 break;
             case "Caballer":
-                personaje = new Caballer(caracteristicas[0], Double.parseDouble(caracteristicas[2]), Double.parseDouble(caracteristicas[3]),
+                personaje = new Cavaller(caracteristicas[0], Double.parseDouble(caracteristicas[2]), Double.parseDouble(caracteristicas[3]),
                         Double.parseDouble(caracteristicas[4]), Double.parseDouble(caracteristicas[5]), Double.parseDouble(caracteristicas[6]),
                         arma, Integer.parseInt(caracteristicas[8]), Integer.parseInt(caracteristicas[9]));
                 break;
@@ -241,33 +253,34 @@ public class HeroesOfVannaria {
         Personatges persona = null;
         Armas herramienta;
         String nombre;
-        int tipo, fuerza, constitucion, velocidad, inteligencia, suerte, puntos = 60, x = 0, arma;
+        int tipo, fuerza, constitucion, velocidad, inteligencia, suerte, puntos = 60, x = 0, arma, cantidad = 4;
         System.out.println("Nombre del personaje: ");
         nombre = in.nextLine();
         System.out.println("Elige la clase:");
         do {
-            System.out.println("1. Guerrero\n2. Asesino\n3. Caballero\n4. Valquiria");
+            System.out.println("1. Guerrero\n2. Asesino\n3. Caballero\n4.Valquiria");
             tipo = in.nextInt();
         } while (tipo > 4 || tipo < 1);
 
         System.out.print("Fuerza: ");
-        fuerza = generarPuntos(x, puntos);
+        fuerza = generarPuntos(x, puntos, cantidad);
         puntos -= fuerza;
+        cantidad--;
 
         System.out.print("Constitucion: ");
-        constitucion = generarPuntos(x, puntos);
+        constitucion = generarPuntos(x, puntos, cantidad);
         puntos -= constitucion;
-
+        cantidad--;
         System.out.print("Velocidad: ");
-        velocidad = generarPuntos(x, puntos);
+        velocidad = generarPuntos(x, puntos, cantidad);
         puntos -= velocidad;
-
+        cantidad--;
         System.out.print("Inteligencia: ");
-        inteligencia = generarPuntos(x, puntos);
+        inteligencia = generarPuntos(x, puntos, cantidad);
         puntos -= inteligencia;
-
+        cantidad--;
         System.out.print("Suerte: ");
-        suerte = generarPuntos(x, puntos);
+        suerte = generarPuntos(x, puntos, cantidad);
         puntos -= suerte;
 
         System.out.println("Que arma utilizarás? ");
@@ -296,16 +309,43 @@ public class HeroesOfVannaria {
                 persona = new Assassi(nombre, fuerza, constitucion, velocidad, inteligencia, suerte, herramienta, 0, 0);
                 break;
             case 3:
-                persona = new Caballer(nombre, fuerza, constitucion, velocidad, inteligencia, suerte, herramienta, 0, 0);
+                persona = new Cavaller(nombre, fuerza, constitucion, velocidad, inteligencia, suerte, herramienta, 0, 0);
                 break;
             case 4:
                 persona = new Valquiria(nombre, fuerza, constitucion, velocidad, inteligencia, suerte, herramienta, 0, 0);
                 break;
         }
-        System.out.println("El personaje se ha creado satisfactoriamente.");
-        System.out.println("");
+
         return persona;
 
+    }
+
+    public static int generarPuntos(int x, int puntos, int cantidad) {
+        Scanner in = new Scanner(System.in);
+        boolean pnt = false;
+        int puntosReal = 0;
+        if (puntos <= 18) {
+            puntosReal = puntos;
+            puntos = puntos - (3 * cantidad);
+
+            pnt = true;
+        }
+
+        if (!pnt) {
+            do {
+                System.out.println("[3 - 18] \nTienes: " + puntos + " puntos");
+                x = in.nextInt();
+
+            } while (x < 3 || x > 18 && puntos != 0);
+
+        } else {
+            do {
+                System.out.println("[3 - " + puntos + "]\nTienes: " + puntosReal + " puntos");
+                x = in.nextInt();
+            } while (x < 3 || x > puntos);
+        }
+
+        return x;
     }
 
     public static void modificarPersonaje(ArrayList<Personatges> persona) {
@@ -323,7 +363,7 @@ public class HeroesOfVannaria {
         do {
             personaje = in.nextInt();
             if (personaje > persona.size() || personaje < 1) {
-                System.out.println("Pon un n�mero v�lido");
+                System.out.println("Pon un número válido");
             }
         } while (persona.size() < personaje || personaje < 1);
 
@@ -342,27 +382,28 @@ public class HeroesOfVannaria {
                     persona.get(personaje - 1).setNom(nombre);
                     break;
                 case '2':
-                    int puntos = 60;
-                    int x = 0;
+                    int puntos = 60,
+                     x = 0,
+                     cantidad = 4;
 
                     System.out.print("Fuerza: ");
-                    persona.get(personaje - 1).setForca(generarPuntos(x, puntos));
+                    persona.get(personaje - 1).setForca(generarPuntos(x, puntos, cantidad));
                     puntos -= persona.get(personaje - 1).getForca();
-
+                    cantidad--;
                     System.out.print("Constitucion: ");
-                    persona.get(personaje - 1).setConstitucio(generarPuntos(x, puntos));
+                    persona.get(personaje - 1).setConstitucio(generarPuntos(x, puntos, cantidad));
                     puntos -= persona.get(personaje - 1).getConstitucio();
-
+                    cantidad--;
                     System.out.print("Velocidad: ");
-                    persona.get(personaje - 1).setVelocitat(generarPuntos(x, puntos));
+                    persona.get(personaje - 1).setVelocitat(generarPuntos(x, puntos, cantidad));
                     puntos -= persona.get(personaje - 1).getVelocitat();
-
+                    cantidad--;
                     System.out.print("Inteligencia: ");
-                    persona.get(personaje - 1).setInteligencia(generarPuntos(x, puntos));
+                    persona.get(personaje - 1).setInteligencia(generarPuntos(x, puntos, cantidad));
                     puntos -= persona.get(personaje - 1).getInteligencia();
-
+                    cantidad--;
                     System.out.print("Suerte: ");
-                    persona.get(personaje - 1).setSort(generarPuntos(x, puntos));
+                    persona.get(personaje - 1).setSort(generarPuntos(x, puntos, cantidad));
                     puntos -= persona.get(personaje - 1).getSort();
 
                     break;
@@ -376,31 +417,6 @@ public class HeroesOfVannaria {
 
         } while (!salir);
 
-    }
-
-    public static int generarPuntos(int x, int puntos) {
-        Scanner in = new Scanner(System.in);
-        boolean pnt = false;
-
-        if (puntos <= 18) {
-            pnt = true;
-        }
-
-        if (!pnt) {
-            do {
-                System.out.println("Pon un numero entre 3 y 18, \naun te quedan " + puntos + " puntos");
-                x = in.nextInt();
-
-            } while (x < 3 || x > 18 && puntos != 0);
-
-        } else {
-            do {
-                System.out.println("Pon un numero igual o inferior a " + puntos);
-                x = in.nextInt();
-            } while (x > puntos);
-        }
-
-        return x;
     }
 
     public static void guardarPartida(ArrayList<Personatges> personajes) {

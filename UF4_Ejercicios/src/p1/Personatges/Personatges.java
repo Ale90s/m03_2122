@@ -44,6 +44,9 @@ public abstract class Personatges {
 
     public void getcaracteristicas() {
 
+        /*
+        Imprime los personajes disponibles y sus características. Aquí es donde se calculan las características derivada
+         */
         calculaDerivades();
         System.out.println(this.getNom() + " - " + this.tipoPersonaje());
         System.out.println("Tipo de arma: " + this.ArmaPersonaje.getNombre());
@@ -120,7 +123,9 @@ public abstract class Personatges {
     }
 
     public void setPex(int pex) {
-
+        /*
+            Los if's sirven como brackets que setean el nivel cuando llegan a cierta experiencia
+         */
         if (pex < 100) {
             setNiv(0);
         } else if (pex == 100) {
@@ -183,7 +188,10 @@ public abstract class Personatges {
     }
 
     public String tipoPersonaje() {
-
+        /* 
+        Función que utilizamos para saber qué tipo de personaje estamos utilizando
+            x.x.Caballer tipoPersonaje[2] = "Cavaller";
+         */
         String[] tipoPersonaje = this.getClass().toString().split("[.]");
 
         return tipoPersonaje[2];
@@ -191,10 +199,57 @@ public abstract class Personatges {
     }
 
     public void subeNivel() {
+        /*
+           Cuando sube de nivel aumentamos las características
+         */
         setForca(this.forca + 1);
         setConstitucio(this.constitucio + 1);
         setVelocitat(this.velocitat + 1);
         setInteligencia(this.inteligencia + 1);
         setSort(this.sort + 1);
+    }
+
+    public void recuperaParcialmentPS() {
+
+        if (tipoPersonaje().equals("Cavaller")) {
+            /*
+            En caso de que sea Cavaller recupera un 10% de vida si tiene un 90% o menos, 
+            en caso contrario se le resetea la vida.
+             */
+            double recuperaPs = ((constitucio + forca + inteligencia) / 10); // 10% salud maxima
+            double noventaPorciento = (constitucio + forca + inteligencia) - recuperaPs; // 90% salud maxima
+
+            System.out.println("");
+
+            if (ps < noventaPorciento) { // en caso de que tenga menos del 90% recupera un 10%
+
+                setPs(ps + recuperaPs);
+                System.out.println("El personaje " + nom + " ha recuperado un 10% de salud.");
+
+            } else { // en caso de que tenga más de un 90% resetea su salud al máximo
+                System.out.println("El personaje " + nom + " vuelve a tener un 100% de salud.");
+                ps = constitucio + forca + inteligencia;
+            }
+        }
+    }
+
+    public boolean contraAtaca() {
+
+        if (tipoPersonaje().equals("Assassi")) {
+            /*
+            En caso de que sea un asesino se hace una tirada de dados y con la mitad
+            de la probabilidad de ataque puede contraatacar.
+             */
+            int dados[] = new int[3];
+            for (int i = 0; i < dados.length; i++) {
+                dados[i] = (int) Math.floor(Math.random() * (25 - 1 + 1) + 1);
+            }
+            if (dados[0] + dados[1] + dados[2] <= (getPa() * 0.5)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 }
