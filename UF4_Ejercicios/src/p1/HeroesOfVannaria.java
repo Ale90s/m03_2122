@@ -10,7 +10,9 @@ public class HeroesOfVannaria {
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
         ArrayList<Personatges> personajes = new ArrayList<>();
-
+        /*
+        Lectura para importar personajes automáticamente
+        */
         String path = "C:\\Users\\aalgarra\\Documents\\Informatica\\m03_2122\\UF4_Ejercicios\\src\\p1\\personatges (3).csv";
 
         FileReader input = new FileReader(path);
@@ -158,15 +160,22 @@ public class HeroesOfVannaria {
                 + "[PS: " + personajes.get(x).getPs() + "]. Tira los dados para comprobar si acierta el ataque [intro]");
         in.nextLine();
         tiradasDados(dados);
-        if (dados[0] + dados[1] + dados[2] <= personajes.get(x).getPa()) {
+        if (dados[0] + dados[1] + dados[2] <= personajes.get(x).getPa()) { 
+            /*
+            si la suma de las 3 tiradas es menor o igual a la probabilidad de ataque ataca
+            */
             System.out.print("Ha acertado el ataque! El enemigo se va a defender [intro]");
             System.out.println("");
             in.nextLine();
             tiradasDados(dados);
             if (dados[0] + dados[1] + dados[2] <= personajes.get(y).getPe()) {
+                /*
+                si la suma de las 3 tiradas es menor o igual a la probabilidad de esquiva el personaje que se 
+                defiende esquiva el ataque
+                */
                 System.out.println("El enemigo ha esquivado el ataque!");
 
-                if (personajes.get(y).contraAtaca()) { // Asesino contraataca
+                if (personajes.get(y).contraAtaca()) { // Si asesino esquiva ataque hay posibilidad de que contraataque
                     personajes.get(x).setPs(personajes.get(x).getPs()
                             - personajes.get(y).getPd());
                     System.out.println("");
@@ -177,6 +186,7 @@ public class HeroesOfVannaria {
                 }
 
             } else {
+                /* Si el enemigo falla la esquiva */
                 System.out.println("Ha conseguido acertar el ataque!");
                 System.out.println("");
                 personajes.get(y).setPs(personajes.get(y).getPs()
@@ -249,11 +259,13 @@ public class HeroesOfVannaria {
     }
 
     public static Personatges creaPersonajeManual() {
+        
         Scanner in = new Scanner(System.in);
         Personatges persona = null;
         Armas herramienta;
         String nombre;
         int tipo, fuerza, constitucion, velocidad, inteligencia, suerte, puntos = 60, x = 0, arma, cantidad = 4;
+        
         System.out.println("Nombre del personaje: ");
         nombre = in.nextLine();
         System.out.println("Elige la clase:");
@@ -262,8 +274,9 @@ public class HeroesOfVannaria {
             tipo = in.nextInt();
         } while (tipo > 4 || tipo < 1);
 
+        // generarPuntos() se encarga de calcular cuantos puntos se pueden distribuir en un campo en concreto
         System.out.print("Fuerza: ");
-        fuerza = generarPuntos(x, puntos, cantidad);
+        fuerza = generarPuntos(x, puntos, cantidad); 
         puntos -= fuerza;
         cantidad--;
 
@@ -271,17 +284,19 @@ public class HeroesOfVannaria {
         constitucion = generarPuntos(x, puntos, cantidad);
         puntos -= constitucion;
         cantidad--;
+
         System.out.print("Velocidad: ");
         velocidad = generarPuntos(x, puntos, cantidad);
         puntos -= velocidad;
         cantidad--;
+
         System.out.print("Inteligencia: ");
         inteligencia = generarPuntos(x, puntos, cantidad);
         puntos -= inteligencia;
         cantidad--;
+
         System.out.print("Suerte: ");
         suerte = generarPuntos(x, puntos, cantidad);
-        puntos -= suerte;
 
         System.out.println("Que arma utilizarás? ");
         System.out.println("1. Daga\n2. Espasa\n3. Martell de Combat");
@@ -321,6 +336,11 @@ public class HeroesOfVannaria {
     }
 
     public static int generarPuntos(int x, int puntos, int cantidad) {
+        /*
+        Comprueba cuáles son los puntos máximos que se le puede distribuir
+        a una característica en concreto dependiendo de cuántos puntos has
+        aplicados a los campos anteriores
+        */
         Scanner in = new Scanner(System.in);
         boolean pnt = false;
         int puntosReal = 0;
@@ -349,6 +369,7 @@ public class HeroesOfVannaria {
     }
 
     public static void modificarPersonaje(ArrayList<Personatges> persona) {
+        
         Scanner in = new Scanner(System.in);
         boolean salir = false;
         char opciones;
@@ -356,11 +377,11 @@ public class HeroesOfVannaria {
 
         System.out.println("\nQue personaje quieres modificar?");
 
-        for (int i = 0; i < persona.size(); i++) {
+        for (int i = 0; i < persona.size(); i++) { // Imprime personajes disponibles
             System.out.println((i + 1) + ". " + persona.get(i).getNom());
         }
 
-        do {
+        do { // Eliges un personaje
             personaje = in.nextInt();
             if (personaje > persona.size() || personaje < 1) {
                 System.out.println("Pon un número válido");
@@ -370,11 +391,12 @@ public class HeroesOfVannaria {
         persona.get(personaje - 1).getcaracteristicas();
 
         do {
-
+            // Opciones disponibles de modificación
             System.out.println("\n1.Cambiar nombre\n2.Cambiar caracteristicas\n"
                     + "3.Muestra los datos cambiados\nx.Salir");
             opciones = in.next().charAt(0);
             in.nextLine();
+            
             switch (opciones) {
                 case '1':
                     System.out.print("Que nombre quieres poner? ");
@@ -404,7 +426,6 @@ public class HeroesOfVannaria {
                     cantidad--;
                     System.out.print("Suerte: ");
                     persona.get(personaje - 1).setSort(generarPuntos(x, puntos, cantidad));
-                    puntos -= persona.get(personaje - 1).getSort();
 
                     break;
                 case '3':
@@ -422,17 +443,23 @@ public class HeroesOfVannaria {
     public static void guardarPartida(ArrayList<Personatges> personajes) {
 
         try {
+            /* 
+            Especificamos ruta para escribir los personajes actuales, se puede 
+            utilizar el mismo archivo que se ha importado
+            */
             FileWriter flux = new FileWriter("C:\\Users\\aalgarra\\Desktop\\PartidaGuardada.vsc");
             BufferedWriter fitxer = new BufferedWriter(flux);
 
             for (int i = 0; i < personajes.size(); i++) {
 
                 Personatges personaje = personajes.get(i);
-
+                // Valores de un personaje
                 fitxer.write(personaje.getNom() + ";" + personaje.tipoPersonaje() + ";"
                         + personaje.getForca() + ";" + personaje.getConstitucio() + ";" + personaje.getVelocitat()
                         + ";" + personaje.getInteligencia() + ";" + personaje.getSort() + ";"
                         + personaje.getArmaPersonaje().getNombre() + ";" + personaje.getNiv() + ";" + personaje.getPex());
+                
+                // Salto de línea para el siguiente personaje
                 fitxer.newLine();
 
             }
